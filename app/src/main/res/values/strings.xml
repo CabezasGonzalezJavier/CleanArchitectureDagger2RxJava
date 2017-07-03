@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CleanArchitectureDagger2RxJava</string>
+
+    <string name="retry">Retry</string>
+</resources>
