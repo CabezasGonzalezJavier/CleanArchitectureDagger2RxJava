@@ -12,11 +12,11 @@ import java.util.List;
 
 public class TopicsContract {
 
-    interface Presenter extends BasePresenter {
+    public interface Presenter extends BasePresenter {
         void fetch();
     }
 
-    interface View extends BaseView<Presenter> {
+    public interface View extends BaseView<Presenter> {
         void showTopics(List<Topics> list);
 
         void showError();

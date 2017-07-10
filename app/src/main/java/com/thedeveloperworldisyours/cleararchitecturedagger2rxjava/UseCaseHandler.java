@@ -23,8 +23,6 @@ package com.thedeveloperworldisyours.cleararchitecturedagger2rxjava;
  */
 public class UseCaseHandler {
 
-    private static UseCaseHandler INSTANCE;
-
     private final UseCaseScheduler mUseCaseScheduler;
 
     public UseCaseHandler(UseCaseScheduler useCaseScheduler) {
@@ -41,19 +39,17 @@ public class UseCaseHandler {
         // that the app is busy until the response is handled.
 //        EspressoIdlingResource.increment(); // App is busy until further notice
 
-        mUseCaseScheduler.execute(new Runnable() {
-            @Override
-            public void run() {
+        mUseCaseScheduler.execute(() ->
 
-                useCase.run();
+                useCase.run()
                 // This callback may be called twice, once for the cache and once for loading
                 // the data from the server API, so we check before decrementing, otherwise
                 // it throws "Counter has been corrupted!" exception.
 //                if (!EspressoIdlingResource.getIdlingResource().isIdleNow()) {
 //                    EspressoIdlingResource.decrement(); // Set app as idle.
 //                }
-            }
-        });
+
+        );
     }
 
     public <V extends UseCase.ResponseValue> void notifyResponse(final V response,
